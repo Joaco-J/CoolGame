@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class pickUp : MonoBehaviour
+public class pickUp : Inventory
 {
     public float radius = 1f;
     public LayerMask Mask;
@@ -15,14 +15,13 @@ public class pickUp : MonoBehaviour
         isNear = Physics.CheckSphere(transform.position, radius, Mask);
         if (isNear && Input.GetButtonDown("Interact"))
         {
-            pickUpObject();
+            pickUpObject(item);
+            for (int x = 0; x < 9; x++)
+            {
+                Debug.Log(inventory[x]);
+            }
         }
     }
 
-    public void pickUpObject()
-    {
-        Debug.Log("Picking up " + item.name);
-        Destroy(gameObject);
-               
-    }
+
 }
