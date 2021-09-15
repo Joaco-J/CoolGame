@@ -23,6 +23,16 @@ public class playermovementScript : MonoBehaviour
     public float jump = 3f;
 
     // Update is called once per frame
+    private void FixedUpdate()
+    {
+        
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        //invtory[32] =
+        other.gameObject.GetComponent<pickUp>().item;
+        Destroy(other.gameObject);
+    }
     void Update()
     {
         isGrounded =Physics.CheckSphere(groundCheck.transform.position, groundDistance, groundMask);

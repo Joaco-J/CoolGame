@@ -19,41 +19,71 @@ public class Inventory : MonoBehaviour
     }
     #endregion
 
-    public item[] inventory = new item[9];
-    int[] nunInvetory = new int[9];
+    public static item[] inventory = new item[9];
+    public int[] numInventory = new int[9];
     public Text pp;
+    bool In;
 
 
-    void FreeSpace()
+    public void AddToIn(item Item)
     {
-        for (int x = 0; x < 9; x++)
-        {
-            if (null == inventory[x])
-            {
-                return int x;
-                break;
-            }
-
-        }
-    }
-    void AddToIn(item Item)
-    {
+        In = false;
         for(int x=0; x < 9; x++)
         {
             if (Item == inventory[x])
             {
-                nunInvetory[x] += 1;
+                numInventory[x] += 1;
+                In = true;
             }
 
         }
+        if (In == false)
+        {
+            for (int x = 0; x < 9; x++)
+            {
+                if (null == inventory[x])
+                {
+                    inventory[x] = Item;
+                    numInventory[x] = 1;
+                    In = true;
+                    break;
+                }
 
+            }
+        }
+        else
+        {
+            In = false;
+        }
+
+        
     }
     
     public void pickUpObject(item a)
     {
         Debug.Log("Picking up " + a.name);
+        AddToIn(a);
         Destroy(gameObject);
 
     }
-    
+
+    public void display(Text pp)
+    {
+        for (int x = 0; x < 9; x++)
+        {
+            pp.text = "ars";
+                //inventory[x].name.ToString() + numInventory[x].ToString() + " ,";
+        }
+    }
+
+
+    void Update()
+    {
+        display(pp);
+        for (int x = 0; x < 9; x++)
+        {
+            Debug.Log(inventory[x]);
+        }
+    }
+
 }

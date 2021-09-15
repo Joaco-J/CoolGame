@@ -8,20 +8,21 @@ public class pickUp : Inventory
     public LayerMask Mask;
     bool isNear;
 
-    public item item;
+
+    public ItemStack item = new ItemStack();
     // Update is called once per frame
-    void Update()
+    /*
+     * void Update()
     {
         isNear = Physics.CheckSphere(transform.position, radius, Mask);
         if (isNear && Input.GetButtonDown("Interact"))
         {
-            pickUpObject(item);
-            for (int x = 0; x < 9; x++)
-            {
-                Debug.Log(inventory[x]);
-            }
+            
+
         }
     }
+     * */
+
 
 
 }
